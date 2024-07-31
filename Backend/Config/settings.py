@@ -67,13 +67,6 @@ WSGI_APPLICATION = 'Config.wsgi.application'
 if DEBUG:
     DATABASES = {
         'default': {
-            'ENGINE': os.getenv('SQLITE_ENGINE'),
-            'NAME': os.path.join(BASE_DIR, os.getenv('SQLITE_NAME')),
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
             'ENGINE': os.getenv('POSTGRES_ENGINE'),
             'NAME': os.getenv('POSTGRES_NAME'),
             'USER': os.getenv('POSTGRES_USER'),
@@ -82,6 +75,17 @@ else:
             'PORT': os.getenv('POSTGRES_PORT'),
         }
     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': os.getenv('POSTGRES_ENGINE'),
+#             'NAME': os.getenv('POSTGRES_NAME'),
+#             'USER': os.getenv('POSTGRES_USER'),
+#             'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+#             'HOST': os.getenv('POSTGRES_HOST'),
+#             'PORT': os.getenv('POSTGRES_PORT'),
+#         }
+#     }
 
 
 
