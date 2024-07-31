@@ -18,4 +18,4 @@ ARG ENV=production
 EXPOSE 8000
 
 # Comando para ejecutar dependiendo del entorno
-CMD if [ "$ENV" = "development" ]; then python manage.py runserver 0.0.0.0:8000; else gunicorn --bind 0.0.0.0:8000 config.wsgi:application; fi
+CMD if [ "$ENV" = "development" ]; then python manage.py runserver 0.0.0.0:8000; else gunicorn --bind 0.0.0.0:8000 Config.wsgi:application; fi
