@@ -1,19 +1,21 @@
+// src/App.js
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import InventoryList from './components/InventoryList';
-import ProductList from './components/ProductList';
-import SaleList from './components/SaleList';
-import WarehouseList from './components/WarehouseList';
+import Inventario from './components/Inventario/Inventario'; // Importar Inventario
+import Navbar from './components/Navbar/Navbar';
+import Venta from './components/Venta/Venta';
+
+const Contacto = () => <h2>Contacto</h2>;
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div>
+        <Navbar />
         <Routes>
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/inventory" element={<InventoryList />} />
-          <Route path="/sales" element={<SaleList />} />
-          <Route path="/warehouses" element={<WarehouseList />} />
+          <Route path="/" element={<Venta />} />
+          <Route path="/productos" element={<Inventario />} /> 
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
       </div>
     </Router>
