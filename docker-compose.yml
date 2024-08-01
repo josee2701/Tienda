@@ -16,7 +16,7 @@ services:
       - db
     environment:
       - ENV=development
-    command: python manage.py runserver 0.0.0.0:9000
+    command: ./entrypoint.sh
 
   frontend:
     build:
