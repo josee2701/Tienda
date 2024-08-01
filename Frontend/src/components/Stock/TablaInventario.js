@@ -1,6 +1,8 @@
 // src/TablaProductos.js
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const productos = [
   { id: 1, empresa: 'AZ Smart Technology LTDA', nombre: '5 Megas', operador: 'Telefonía M2M', moneda: 'Col', precio: '7000,00' },
@@ -25,6 +27,7 @@ function TablaProductos() {
           <th>Operador</th>
           <th>Moneda</th>
           <th>Precio</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -36,6 +39,14 @@ function TablaProductos() {
             <td>{producto.operador}</td>
             <td>{producto.moneda}</td>
             <td>{producto.precio}</td>
+            <td>
+              {/* <Link to={`/updateproducto/${producto.id}`}> */}
+              <Link to={`/updatestock`}>
+                <button className="btn btn-primary">
+                  <i className="fa-solid fa-pen"></i>
+                </button>
+              </Link>
+            </td>
           </tr>
         ))}
       </tbody>

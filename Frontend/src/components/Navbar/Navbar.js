@@ -14,7 +14,7 @@ const Navbar = () => {
           <Link to="/productos">Productos</Link>
         </li>
         <li>
-          <Link to="/contacto">Contacto</Link>
+          <Link to="/stock">Stock</Link>
         </li>
         <input type="text" className="form-control w-25" placeholder="Buscar..." />
       </ul>

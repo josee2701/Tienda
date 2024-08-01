@@ -1,8 +1,9 @@
 // src/App.js
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import './Inventarios.css';
-import TablaProductos from './TablaProductos';
+import { Link } from 'react-router-dom';
+import './Inventario.css';
+import TablaInventario from './TablaInventario';
 
 function Inventario() {
   return (
@@ -12,10 +13,9 @@ function Inventario() {
       </header>
       <main className="mt-4">
         <div className="d-flex justify-content-between mb-3">
-          <button className="btn btn-primary">+ Agregar Producto</button>
-          <input type="text" className="form-control w-25" placeholder="Buscar..." />
+          <button className="btn btn-primary"><Link to="/addstock">+ Agrgar a inventario</Link></button>
         </div>
-        <TablaProductos />
+        <TablaInventario />
       </main>
     </div>
   );

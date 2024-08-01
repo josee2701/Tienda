@@ -1,11 +1,15 @@
 // src/App.js
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Inventario from './components/Inventario/Inventario'; // Importar Inventario
 import Navbar from './components/Navbar/Navbar';
+import AddProducto from './components/Productos/AddProductos';
+import Productos from './components/Productos/Productos';
+import UpdateProducto from './components/Productos/UpdateProductos';
+import AddStock from './components/Stock/AddStock';
+import Stock from './components/Stock/Inventario';
+import UpdateStock from './components/Stock/UpdateStock';
 import Venta from './components/Venta/Venta';
 
-const Contacto = () => <h2>Contacto</h2>;
 
 function App() {
   return (
@@ -14,8 +18,12 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Venta />} />
-          <Route path="/productos" element={<Inventario />} /> 
-          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/productos" element={<Productos />} /> 
+          <Route path="/addproducto" element={<AddProducto />} />
+          <Route path="/updateproducto" element={<UpdateProducto />} />
+          <Route path="/stock" element={<Stock />} />
+          <Route path="/addstock" element={<AddStock />} />
+          <Route path="/updatestock" element={<UpdateStock />} />
         </Routes>
       </div>
     </Router>
