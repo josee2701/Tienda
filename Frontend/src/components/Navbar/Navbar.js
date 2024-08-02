@@ -16,11 +16,12 @@ const Navbar = () => {
         <li>
           <Link to="/stock">Stock</Link>
         </li>
-        <input type="text" className="form-control w-25" placeholder="Buscar..." />
+        <li>
+          <Link to="/ventas">Ventas</Link>
+        </li>
       </ul>
       
     </nav>
   );
 }
-
 export default Navbar;

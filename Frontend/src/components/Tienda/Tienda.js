@@ -16,7 +16,7 @@ function Venta() {
   return (
     <div className="container">
       <header className="header bg-primary text-white p-3">
-        <h1 className="text-start">Venta</h1>
+        <h1 className="text-start">Tienda</h1>
         
       </header>
       <main className="mt-4">

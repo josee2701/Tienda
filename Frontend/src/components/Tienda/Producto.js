@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify'; // Importar toast
 import './Productos.css';
+
 const Producto = ({ producto }) => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [cantidad, setCantidad] = useState(1);
@@ -14,15 +16,37 @@ const Producto = ({ producto }) => {
   };
 
   const handleConfirmarClick = () => {
-    // Aquí puedes agregar la lógica para confirmar la compra
-    console.log(`Producto comprado: ${producto.nombre}, Cantidad: ${cantidad}`);
-    setMostrarFormulario(false);
-    setCompraExitosa(true);
+    const venta = {
+      fecha: new Date().toISOString().split('T')[0], // Fecha en formato YYYY-MM-DD
+      precio: producto.precio,
+      cliente: 'Cliente ejemplo', // Puedes ajustar esto según tu lógica
+      product: producto.id,
+      cantidad: cantidad
+    };
 
-    // Ocultar el mensaje de éxito después de 3 segundos
-    setTimeout(() => {
-      setCompraExitosa(false);
-    }, 999);
+    // Realizar la solicitud POST al backend
+    fetch('http://localhost:9000/api/ventas/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(venta),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la compra');
+        }
+        return response.json();
+      })
+      .then(data => {
+        toast.success('Compra exitosa!');
+        setMostrarFormulario(false);
+        setCompraExitosa(true);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Error en la compra');
+      });
   };
 
   return (
@@ -57,11 +81,6 @@ const Producto = ({ producto }) => {
             </div>
           )}
         </div>
-      {compraExitosa && (
-            <div className="alert alert-success mt-3" role="alert">
-              Compra exitosa!
-            </div>
-          )}
       </div>
     </div>
   );

@@ -1,23 +1,22 @@
-// src/TablaStock.js
+// src/TablaVentas.js
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
-function TablaStock() {
-  const [stocks, setstocks] = useState([]);
+function TablaVentas() {
+  const [ventas, setventas] = useState([]);
   const [error, setError] = useState(null);
 
   
   useEffect(() => {
-    fetch('http://localhost:9000/api/stock/')
+    fetch('http://localhost:9000/api/ventas/')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      .then(data => setstocks(data))
+      .then(data => setventas(data))
       .catch(error => {
         console.error('Error fetching data:', error);
         setError(error);
@@ -28,8 +27,11 @@ function TablaStock() {
       <thead className="thead-dark">
         <tr>
           <th>ID</th>
+          <th>Cliente</th>
           <th>Producto</th>
           <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Fecha</th>
         </tr>
       </thead>
       <tbody>
@@ -39,18 +41,14 @@ function TablaStock() {
               Error al cargar los productos: {error.message}
             </td>
           </tr>
-        ) : (stocks.map(stock => (
-          <tr key={stock.id}>
-            <td>{stock.id}</td>
-            <td>{stock.producto_nombre}</td>
-            <td>{stock.cantidad}</td>
-            <td>
-              <Link to={`/updatestock/${stock.id}`}>
-                <button className="btn btn-primary">
-                  <i className="fa-solid fa-pen"></i>
-                </button>
-              </Link>
-            </td>
+        ) : (ventas.map(ventas => (
+          <tr key={ventas.id}>
+            <td>{ventas.id}</td>
+            <td>{ventas.cliente}</td>
+            <td>{ventas.producto_nombre}</td>
+            <td>{ventas.cantidad}</td>
+            <td>{ventas.precio}</td>
+            <td>{ventas.fecha}</td>
           </tr>
         ))
       )}
@@ -59,4 +57,4 @@ function TablaStock() {
   );
 }
 
-export default TablaStock;
+export default TablaVentas;

@@ -97,7 +97,6 @@ function Productos() {
               onChange={handleChange}
               required
             >
-              <option value="">Selecciona un producto</option>
               {productos.map(producto => (
                 <option key={producto.id} value={producto.id}>{producto.nombre}</option>
               ))}

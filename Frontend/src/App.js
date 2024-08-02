@@ -8,7 +8,8 @@ import UpdateProducto from './components/Productos/UpdateProductos';
 import AddStock from './components/Stock/AddStock';
 import Stock from './components/Stock/Inventario';
 import UpdateStock from './components/Stock/UpdateStock';
-import Venta from './components/Venta/Venta';
+import Tienda from './components/Tienda/Tienda';
+import Ventas from './components/Ventas/Ventas';
 
 
 function App() {
@@ -17,13 +18,15 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Venta />} />
+          <Route path="/" element={<Tienda />} />
           <Route path="/productos" element={<Productos />} /> 
           <Route path="/addproducto" element={<AddProducto />} />
           <Route path="/updateproducto/:id" element={<UpdateProducto />} />
           <Route path="/stock" element={<Stock />} />
           <Route path="/addstock" element={<AddStock />} />
           <Route path="/updatestock" element={<UpdateStock />} />
+          <Route path="/ventas" element={<Ventas />} />
+
         </Routes>
       </div>
     </Router>
