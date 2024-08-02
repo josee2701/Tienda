@@ -7,5 +7,7 @@ from .serializers import StockSerializer
 # Create your views here.
 
 class StockViewSet(viewsets.ModelViewSet):
-    queryset = Stock.objects.all()
+    queryset = Stock.objects.all().order_by('id')
     serializer_class = StockSerializer
+    
+    print(i for i in queryset )
