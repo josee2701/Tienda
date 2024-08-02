@@ -6,9 +6,11 @@ from App.Stock.models import Stock
 
 
 class VentasSerializer(serializers.ModelSerializer):
+    producto_nombre = serializers.CharField(source='product.nombre', read_only=True)
+    
     class Meta:
         model = Ventas
-        fields = '__all__'
+        fields = ['id', 'product', 'producto_nombre', 'cantidad', 'fecha', 'precio', 'cliente']
 
     def create(self, validated_data):
         product = validated_data.get('product')

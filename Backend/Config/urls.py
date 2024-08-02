@@ -23,7 +23,7 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'products', ProductViewSet)
-router.register(r'venrtas', VentasViewSet)
+router.register(r'ventas', VentasViewSet)
 router.register(r'stock', StockViewSet)
 
 urlpatterns = [

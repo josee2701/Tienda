@@ -9,5 +9,3 @@ from .serializers import StockSerializer
 class StockViewSet(viewsets.ModelViewSet):
     queryset = Stock.objects.all().order_by('id')
     serializer_class = StockSerializer
-    
-    print(i for i in queryset )
