@@ -1,15 +1,24 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Inventario.css';
 
 function Productos() {
   const [formData, setFormData] = useState({
-    id: '',
-    nombre: '',
-    precio: '',
-    imagen: '',
-    colores: ''
+    producto: '', // Corregido de 'Producto' a 'producto'
+    cantidad: ''
   });
+
+  const [productos, setProductos] = useState([]);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  // Fetch products to populate the select dropdown
+  useEffect(() => {
+    fetch('http://localhost:9000/api/products/')
+      .then(response => response.json())
+      .then(data => setProductos(data))
+      .catch(error => setError(error));
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,73 +30,87 @@ function Productos() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí podrías manejar el envío del formulario
-    console.log(formData);
+
+    const data = new FormData();
+    data.append('producto', formData.producto);
+    data.append('cantidad', formData.cantidad);
+
+    fetch('http://localhost:9000/api/stock/', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': getCookie('csrftoken'),  // Aquí se incluye el token CSRF
+      },
+      body: data,
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Success:', data);
+      setSuccess(true);
+      setFormData({
+        producto: '',
+        cantidad: ''
+      });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      setError(error);
+    });
+  };
+
+  // Función para obtener el token CSRF de las cookies
+  const getCookie = (name) => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
   };
 
   return (
     <div className="container">
       <header className="header bg-primary text-white p-3">
-        <h1 className="text-start">Nuevo Producto</h1>
+        <h1 className="text-start">Nuevo Producto en Stock</h1>
       </header>
       <main className="mt-4">
         <form onSubmit={handleSubmit}>
+          {error && <div className="alert alert-danger" role="alert">Error: {error.message}</div>}
+          {success && <div className="alert alert-success" role="alert">Producto agregado exitosamente al stock</div>}
           <div className="mb-3">
-            <label htmlFor="id" className="form-label">ID</label>
-            <input
-              type="text"
+            <label htmlFor="producto" className="form-label">Producto</label>
+            <select
               className="form-control"
-              id="id"
-              name="id"
-              value={formData.id}
+              id="producto"
+              name="producto"
+              value={formData.producto}
               onChange={handleChange}
               required
-            />
+            >
+              <option value="">Selecciona un producto</option>
+              {productos.map(producto => (
+                <option key={producto.id} value={producto.id}>{producto.nombre}</option>
+              ))}
+            </select>
           </div>
           <div className="mb-3">
-            <label htmlFor="nombre" className="form-label">Nombre</label>
-            <input
-              type="text"
-              className="form-control"
-              id="nombre"
-              name="nombre"
-              value={formData.nombre}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="precio" className="form-label">Precio</label>
+            <label htmlFor="cantidad" className="form-label">Cantidad</label>
             <input
               type="number"
               className="form-control"
-              id="precio"
-              name="precio"
-              value={formData.precio}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="imagen" className="form-label">Imagen</label>
-            <input
-              type="text"
-              className="form-control"
-              id="imagen"
-              name="imagen"
-              value={formData.imagen}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="colores" className="form-label">Colores</label>
-            <input
-              type="number"
-              className="form-control"
-              id="colores"
-              name="colores"
-              value={formData.colores}
+              id="cantidad"
+              name="cantidad"
+              value={formData.cantidad}
               onChange={handleChange}
               required
             />
