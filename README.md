@@ -1,70 +1,182 @@
-# Getting Started with Create React App
+# Proyecto de Inventario
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación de inventario que utiliza Django como backend y React como frontend. El entorno del proyecto está gestionado con Docker para facilitar la configuración y ejecución.
 
-## Available Scripts
+## Estructura del Proyecto
 
-In the project directory, you can run:
+- **Backend**: Django
+- **Frontend**: React
+- **Contenedor**: Docker
+- **Base de Datos**: PostgreSQL
 
-### `npm start`
+.
+├── arbol_proyecto.txt
+├── Backend
+│   ├── App
+│   │   ├── Productos
+│   │   │   ├── admin.py
+│   │   │   ├── apps.py
+│   │   │   ├── _init__.py
+│   │   │   ├── migrations
+│   │   │   │   ├── 0001_initial.py
+│   │   │   │   ├── 0002_remove_product_descripcion_product_color_and_more.py
+│   │   │   │   ├── 0003_alter_product_color_alter_product_imagen.py
+│   │   │   │   ├── _init__.py
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── tests.py
+│   │   │   ├── urls.py
+│   │   │   └── views.py
+│   │   ├── Stock
+│   │   │   ├── admin.py
+│   │   │   ├── apps.py
+│   │   │   ├── _init__.py
+│   │   │   ├── migrations
+│   │   │   │   ├── 0001_initial.py
+│   │   │   │   ├── _init__.py
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── tests.py
+│   │   │   ├── urls.py
+│   │   │   └── views.py
+│   │   └── Ventas
+│   │       ├── admin.py
+│   │       ├── apps.py
+│   │       ├── _init__.py
+│   │       ├── migrations
+│   │       │   ├── 0001_initial.py
+│   │       │   ├── 0002_rename_customer_ventas_cliente_and_more.py
+│   │       │   ├── _init__.py
+│   │       ├── models.py
+│   │       ├── serializers.py
+│   │       ├── tests.py
+│   │       ├── urls.py
+│   │       └── views.py
+│   ├── Config
+│   │   ├── asgi.py
+│   │   ├── _init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   ├── db.sqlite3
+│   ├── Dockerfile
+│   ├── entrypoint.sh
+│   ├── manage.py
+│   ├── media
+│   │   └── productos
+│   │       ├── 1366_2000.jpg
+│   │       ├── descarga_1.jpg
+│   │       ├── descarga.jpg
+│   │       ├── IMG_20230131_130916_bnjSvMZ.jpg
+│   │       ├── IMG_20230131_130916.jpg
+│   │       └── istockphoto-1395191574-612x612.jpg
+│   └── requirements.txt
+├── docker-compose.yml
+├── Frontend
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── components
+│   │   │   ├── Navbar
+│   │   │   │   ├── Navbar.css
+│   │   │   │   └── Navbar.js
+│   │   │   ├── Productos
+│   │   │   │   ├── AddProductos.js
+│   │   │   │   ├── Productos.css
+│   │   │   │   ├── Productos.js
+│   │   │   │   ├── TablaProductos.js
+│   │   │   │   └── UpdateProductos.js
+│   │   │   ├── Stock
+│   │   │   │   ├── AddStock.js
+│   │   │   │   ├── Inventario.css
+│   │   │   │   ├── Inventario.js
+│   │   │   │   ├── TablaInventario.js
+│   │   │   │   └── UpdateStock.js
+│   │   │   ├── Tienda
+│   │   │   │   ├── ListaProductos.js
+│   │   │   │   ├── Producto.js
+│   │   │   │   ├── Productos.css
+│   │   │   │   └── Tienda.js
+│   │   │   └── Ventas
+│   │   │       ├── TablaVentas.js
+│   │   │       └── Ventas.js
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── logo.svg
+│   │   ├── reportWebVitals.js
+│   │   └── setupTests.js
+│   └── yarn.lock
+└── README.md
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Requisitos
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para ejecutar este proyecto localmente, necesitarás tener instalado:
 
-### `npm test`
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Configuración y Ejecución
 
-### `npm run build`
+Sigue estos pasos para ejecutar el proyecto localmente:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Construye y ejecuta los contenedores:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    docker-compose up --build
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   Este comando construye las imágenes de Docker para el backend y el frontend, y luego inicia los contenedores.
 
-### `npm run eject`
+2. **Accede a la aplicación:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    - **Frontend**: [http://localhost:3000](http://localhost:3000)
+    - **Backend (Django Admin)**: [http://localhost:8000/admin](http://localhost:8000/admin)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    Puedes usar estas URLs para interactuar con la aplicación y el panel de administración de Django.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Parar los contenedores:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    Para detener los contenedores, usa:
 
-## Learn More
+    ```bash
+    docker-compose down
+    ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Scripts Disponibles
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+En el contenedor de frontend (React), puedes ejecutar los siguientes scripts:
 
-### Code Splitting
+- **`npm start`**: Inicia la aplicación en modo desarrollo. Abre [http://localhost:3000](http://localhost:3000) en tu navegador para verla en acción.
+- **`npm test`**: Ejecuta el test runner en modo interactivo.
+- **`npm run build`**: Construye la aplicación para producción. Los archivos generados estarán en el directorio `build`.
+- **`npm run eject`**: Expone la configuración de build para personalizarla (es una operación irreversible).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Información Adicional
 
-### Analyzing the Bundle Size
+- **Documentación de Create React App**: [Create React App Docs](https://facebook.github.io/create-react-app/docs/getting-started)
+- **Documentación de React**: [React Docs](https://reactjs.org/)
+- **Documentación de Django**: [Django Docs](https://docs.djangoproject.com/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contribución
 
-### Making a Progressive Web App
+Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Haz un fork del repositorio.
+2. Crea una nueva rama (`git checkout -b feature/tu-feature`).
+3. Realiza tus cambios y haz un commit (`git commit -am 'Añadir nueva feature'`).
+4. Envía tus cambios a tu fork (`git push origin feature/tu-feature`).
+5. Crea un pull request en el repositorio original.
 
-### Advanced Configuration
+## Licencia
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.

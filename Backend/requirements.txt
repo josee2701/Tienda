@@ -1,0 +1,9 @@
+# requirements.txt
+django
+djangorestframework
+python-dotenv
+
+#base de datos
+psycopg2-binary
+django-cors-headers
+
