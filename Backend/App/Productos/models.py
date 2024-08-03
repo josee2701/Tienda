@@ -10,8 +10,8 @@ class Product(models.Model):
 
     nombre= models.CharField(max_length=50)
     precio=models.DecimalField(max_digits=10,decimal_places=1)
-    imagen = models.FileField(default='https://via.placeholder.com/2400x1350')
-    color= models.TextField(default='#00000')
+    imagen = models.FileField(upload_to='productos/')
+    color= models.TextField()
 
     def __str__(self):
         

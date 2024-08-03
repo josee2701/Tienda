@@ -9,6 +9,115 @@ Este proyecto es una aplicación de inventario que utiliza Django como backend y
 - **Contenedor**: Docker
 - **Base de Datos**: PostgreSQL
 
+.
+├── arbol_proyecto.txt
+├── Backend
+│   ├── App
+│   │   ├── Productos
+│   │   │   ├── admin.py
+│   │   │   ├── apps.py
+│   │   │   ├── _init__.py
+│   │   │   ├── migrations
+│   │   │   │   ├── 0001_initial.py
+│   │   │   │   ├── 0002_remove_product_descripcion_product_color_and_more.py
+│   │   │   │   ├── 0003_alter_product_color_alter_product_imagen.py
+│   │   │   │   ├── _init__.py
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── tests.py
+│   │   │   ├── urls.py
+│   │   │   └── views.py
+│   │   ├── Stock
+│   │   │   ├── admin.py
+│   │   │   ├── apps.py
+│   │   │   ├── _init__.py
+│   │   │   ├── migrations
+│   │   │   │   ├── 0001_initial.py
+│   │   │   │   ├── _init__.py
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── tests.py
+│   │   │   ├── urls.py
+│   │   │   └── views.py
+│   │   └── Ventas
+│   │       ├── admin.py
+│   │       ├── apps.py
+│   │       ├── _init__.py
+│   │       ├── migrations
+│   │       │   ├── 0001_initial.py
+│   │       │   ├── 0002_rename_customer_ventas_cliente_and_more.py
+│   │       │   ├── _init__.py
+│   │       ├── models.py
+│   │       ├── serializers.py
+│   │       ├── tests.py
+│   │       ├── urls.py
+│   │       └── views.py
+│   ├── Config
+│   │   ├── asgi.py
+│   │   ├── _init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   ├── db.sqlite3
+│   ├── Dockerfile
+│   ├── entrypoint.sh
+│   ├── manage.py
+│   ├── media
+│   │   └── productos
+│   │       ├── 1366_2000.jpg
+│   │       ├── descarga_1.jpg
+│   │       ├── descarga.jpg
+│   │       ├── IMG_20230131_130916_bnjSvMZ.jpg
+│   │       ├── IMG_20230131_130916.jpg
+│   │       └── istockphoto-1395191574-612x612.jpg
+│   └── requirements.txt
+├── docker-compose.yml
+├── Frontend
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── components
+│   │   │   ├── Navbar
+│   │   │   │   ├── Navbar.css
+│   │   │   │   └── Navbar.js
+│   │   │   ├── Productos
+│   │   │   │   ├── AddProductos.js
+│   │   │   │   ├── Productos.css
+│   │   │   │   ├── Productos.js
+│   │   │   │   ├── TablaProductos.js
+│   │   │   │   └── UpdateProductos.js
+│   │   │   ├── Stock
+│   │   │   │   ├── AddStock.js
+│   │   │   │   ├── Inventario.css
+│   │   │   │   ├── Inventario.js
+│   │   │   │   ├── TablaInventario.js
+│   │   │   │   └── UpdateStock.js
+│   │   │   ├── Tienda
+│   │   │   │   ├── ListaProductos.js
+│   │   │   │   ├── Producto.js
+│   │   │   │   ├── Productos.css
+│   │   │   │   └── Tienda.js
+│   │   │   └── Ventas
+│   │   │       ├── TablaVentas.js
+│   │   │       └── Ventas.js
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── logo.svg
+│   │   ├── reportWebVitals.js
+│   │   └── setupTests.js
+│   └── yarn.lock
+└── README.md
+
 ## Requisitos
 
 Para ejecutar este proyecto localmente, necesitarás tener instalado:

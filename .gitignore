@@ -27,3 +27,5 @@ Backend/venv
 Backend/.env
 
 *.sqlite3
+
+Backend/media*
