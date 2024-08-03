@@ -7,7 +7,7 @@ function Productos() {
     nombre: '',
     precio: '',
     imagen: null,
-    colores: ''
+    color: ''
   });
 
   const [error, setError] = useState(null);
@@ -35,7 +35,7 @@ function Productos() {
     data.append('nombre', formData.nombre);
     data.append('precio', formData.precio);
     data.append('imagen', formData.imagen);
-    data.append('colores', formData.colores);
+    data.append('color', formData.color);
 
     fetch('http://localhost:9000/api/products/', {
       method: 'POST',
@@ -57,7 +57,7 @@ function Productos() {
         nombre: '',
         precio: '',
         imagen: null,
-        colores: ''
+        color: ''
       });
     })
     .catch(error => {
@@ -127,13 +127,13 @@ function Productos() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="colores" className="form-label">Colores</label>
+            <label htmlFor="color" className="form-label">Color</label>
             <input
               type="text"
               className="form-control"
-              id="colores"
-              name="colores"
-              value={formData.colores}
+              id="color"
+              name="color"
+              value={formData.color}
               onChange={handleChange}
               required
             />
