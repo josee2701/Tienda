@@ -59,7 +59,7 @@ const Producto = ({ producto }) => {
           <div className="card-body flex-grow-1">
             <h5 className="card-title">{producto.nombre}</h5>
             <p className="card-text"><strong>Precio:</strong> ${producto.precio}</p>
-            <p className="card-text"><small className="text-muted">Disponible en {producto.colores} colores</small></p>
+            <p className="card-text"><small className="text-muted">Disponible en {producto.color} colores</small></p>
           </div>
           <div className="d-flex justify-content-end align-items-center">
             {!mostrarFormulario && (

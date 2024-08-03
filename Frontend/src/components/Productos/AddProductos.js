@@ -128,22 +128,15 @@ function Productos() {
           </div>
           <div className="mb-3">
             <label htmlFor="colores" className="form-label">Colores</label>
-            <select
+            <input
+              type="text"
               className="form-control"
               id="colores"
               name="colores"
               value={formData.colores}
               onChange={handleChange}
               required
-            >
-              <option value="">Selecciona un color</option>
-              <option value="rojo">Rojo</option>
-              <option value="azul">Azul</option>
-              <option value="verde">Verde</option>
-              <option value="amarillo">Amarillo</option>
-              <option value="negro">Negro</option>
-              <option value="blanco">Blanco</option>
-            </select>
+            />
           </div>
           <button type="submit" className="btn btn-primary">Agregar Producto</button>
         </form>

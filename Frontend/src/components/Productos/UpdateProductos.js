@@ -9,7 +9,7 @@ function EditarProducto() {
     nombre: '',
     precio: '',
     imagen: null,
-    colores: ''
+    color: ''
   });
 
   const [error, setError] = useState(null);
@@ -30,7 +30,7 @@ function EditarProducto() {
             nombre: data.nombre,
             precio: data.precio,
             imagen: null, // We don't pre-fill the file input
-            colores: data.colores
+            color: data.color
           });
         })
         .catch(error => {
@@ -64,7 +64,7 @@ function EditarProducto() {
     if (formData.imagen) {
       data.append('imagen', formData.imagen);
     }
-    data.append('colores', formData.colores);
+    data.append('color', formData.color);
 
     const url = id ? `http://localhost:9000/api/products/${id}/` : 'http://localhost:9000/api/products/';
     const method = id ? 'PUT' : 'POST';
@@ -89,7 +89,7 @@ function EditarProducto() {
         nombre: '',
         precio: '',
         imagen: null,
-        colores: ''
+        color: ''
       });
     })
     .catch(error => {
@@ -154,26 +154,20 @@ function EditarProducto() {
               id="imagen"
               name="imagen"
               onChange={handleFileChange}
+              required
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="colores" className="form-label">Colores</label>
-            <select
+            <label htmlFor="color" className="form-label">Color</label>
+            <input
+              type="text"
               className="form-control"
-              id="colores"
-              name="colores"
-              value={formData.colores}
+              id="color"
+              name="color"
+              value={formData.color}
               onChange={handleChange}
               required
-            >
-              <option value="">Selecciona un color</option>
-              <option value="rojo">Rojo</option>
-              <option value="azul">Azul</option>
-              <option value="verde">Verde</option>
-              <option value="amarillo">Amarillo</option>
-              <option value="negro">Negro</option>
-              <option value="blanco">Blanco</option>
-            </select>
+            />
           </div>
           <button type="submit" className="btn btn-primary">{id ? 'Guardar cambios' : 'Agregar Producto'}</button>
         </form>

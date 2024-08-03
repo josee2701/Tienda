@@ -4,7 +4,7 @@ import './Inventario.css';
 
 function Productos() {
   const [formData, setFormData] = useState({
-    producto: '', // Corregido de 'Producto' a 'producto'
+    producto: '', // Asegúrate de que 'producto' esté vacío por defecto
     cantidad: ''
   });
 
@@ -97,6 +97,7 @@ function Productos() {
               onChange={handleChange}
               required
             >
+              <option value="">Seleccione un producto</option>
               {productos.map(producto => (
                 <option key={producto.id} value={producto.id}>{producto.nombre}</option>
               ))}
